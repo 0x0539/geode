@@ -1,9 +1,9 @@
 module Geode
   class Vector3d
     def initialize(x, y, z)
-      @x = x
-      @y = y
-      @z = z
+      @x = x.to_f
+      @y = y.to_f
+      @z = z.to_f
     end
 
     attr_reader :x
@@ -24,6 +24,13 @@ module Geode
 
     def /(scalar)
       Vector3d.new(@x / scalar, @y / scalar, @z / scalar)
+    end
+
+    def cross(other)
+      Vector3d.new(
+          @y*other.z - @z*other.y,
+          @z*other.x - @x*other.z,
+          @x*other.y - @y*other.x)
     end
 
     def normalize()
